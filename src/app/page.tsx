@@ -1,69 +1,97 @@
-import Image from "next/image";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import StatementSection from "@/components/StatementSection";
+import Intro from "@/components/Intro";
+import PropertyStats from "@/components/PropertyStats";
+import ArchitectureMoment from "@/components/ArchitectureMoment";
+import FloorSection from "@/components/FloorSection";
+import MasterSuite from "@/components/MasterSuite";
+import Gallery from "@/components/Gallery";
+import EmotionalSection from "@/components/EmotionalSection";
+import Location from "@/components/Location";
+import ConstructionStatus from "@/components/ConstructionStatus";
+import TransparencyNotice from "@/components/TransparencyNotice";
+import PriceSection from "@/components/PriceSection";
+import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
+import { galleryImages } from "@/data/property";
+
+const img = (name: string) => galleryImages.find((i) => i.src.includes(name))!;
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      <Header />
+      <main>
+        <Hero />
+
+        <StatementSection
+          lines={["Espaço para viver.", "Espaço para receber.", "Espaço para ser seu."]}
+          accentLine={2}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        <Intro />
+        <PropertyStats />
+        <ArchitectureMoment />
+
+        <FloorSection
+          id="terreo"
+          index="01"
+          subtitle="Piso térreo"
+          title="Onde a casa acontece."
+          description="Hall de entrada elegante e um amplo living para dois ambientes, integrando sala de estar, sala de jantar e cozinha americana."
+          features={[
+            "Hall de entrada elegante",
+            "Amplo living para 2 ambientes",
+            "Sala de estar",
+            "Sala de jantar",
+            "Cozinha americana",
+            "Lavabo de apoio",
+          ]}
+          images={[img("social-living-ampla"), img("terreo-lavabo")]}
+        />
+
+        <FloorSection
+          id="superior"
+          index="02"
+          subtitle="Piso superior"
+          title="Onde o dia termina."
+          description="Três suítes espaçosas organizadas em torno de um corredor silencioso — a área mais íntima e privada da casa."
+          features={["3 suítes espaçosas", "1 suíte master com espaço diferenciado", "Corredor privativo"]}
+          images={[img("superior-suite-quarto-a"), img("superior-suite-banheiro-a")]}
+          tone="dark"
+          reverse
+        />
+
+        <FloorSection
+          id="subsolo"
+          index="03"
+          subtitle="Subsolo"
+          title="Onde a casa ganha outra dimensão."
+          description="Um pavimento pensado para o dia a dia e para receber, com espaço amplo, lavanderia separada e quatro vagas de garagem."
+          features={[
+            "Ampla área para futuro espaço gourmet",
+            "Lavanderia separada",
+            "Lavabo de apoio",
+            "4 vagas — 2 cobertas e 2 descobertas",
+          ]}
+          images={[img("subsolo-escada"), img("corredor-passagem")]}
+          highlight={{
+            title: "Um espaço esperando pela sua ideia.",
+            text: "A ampla área do subsolo pode receber um futuro espaço gourmet — o potencial é seu para desenhar.",
+          }}
+        />
+
+        <MasterSuite />
+        <Gallery />
+        <EmotionalSection />
+        <Location />
+        <ConstructionStatus />
+        <TransparencyNotice />
+        <PriceSection />
+        <ContactSection />
       </main>
-    </div>
+      <Footer />
+    </>
   );
 }
